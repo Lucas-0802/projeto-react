@@ -5,7 +5,7 @@ const Dashboard = () => {
     return ( 
         <TemplateDefault 
         title='Home Page' 
-        navbar={ <DetailTools /> }>
+        navbar={ <DetailTools showButtonSaveAndBack  /> }>
            Testando...
         </TemplateDefault>
      );
