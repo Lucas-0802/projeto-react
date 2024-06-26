@@ -5,6 +5,9 @@ import {
   Icon,
   Paper,
   Skeleton,
+  Theme,
+  Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 
@@ -51,6 +54,8 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
   clickSaveButton,
   clickSaveAndBackButton,
 }) => {
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   const theme = useTheme();
   return (
     <Box
@@ -63,7 +68,7 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
       alignItems="center"
       component={Paper}
     >
-      {(showButtonSave && !showButtonSaveLoading) && (
+      {showButtonSave && !showButtonSaveLoading && (
         <Button
           variant="contained"
           color="primary"
@@ -71,12 +76,19 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
           disableElevation
           startIcon={<Icon>save</Icon>}
         >
-          Save
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Save
+          </Typography>
         </Button>
       )}
       {showButtonSaveLoading && <Skeleton width={110} height={60} />}
 
-      {(showButtonSaveAndBack && !showButtonSaveAndBackLoading) && (
+      {(showButtonSaveAndBack && !showButtonSaveAndBackLoading && !smDown && !mdDown) && (
         <Button
           variant="outlined"
           color="primary"
@@ -84,11 +96,18 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
           disableElevation
           startIcon={<Icon>save</Icon>}
         >
-          Save and Back
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Save and Back
+          </Typography>
         </Button>
       )}
-      {showButtonSaveAndBackLoading && <Skeleton width={180} height={60} />}
-      {(showButtonDelete && !showButtonDeleteLoading) && (
+      {(showButtonSaveAndBackLoading  && !smDown && !mdDown) && <Skeleton width={180} height={60} />}
+      {showButtonDelete && !showButtonDeleteLoading && (
         <Button
           variant="outlined"
           color="primary"
@@ -96,13 +115,20 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
           disableElevation
           startIcon={<Icon>delete</Icon>}
         >
-          Delete
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Delete
+          </Typography>
         </Button>
       )}
 
       {showButtonDeleteLoading && <Skeleton width={110} height={60} />}
 
-      {(showButtonNew && !showButtonNewLoading) && (
+      {(showButtonNew && !showButtonNewLoading && !smDown) && (
         <Button
           variant="outlined"
           color="primary"
@@ -110,13 +136,22 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
           disableElevation
           startIcon={<Icon>add</Icon>}
         >
-          {textButtonNew}
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            {textButtonNew}
+          </Typography>
         </Button>
       )}
-      {showButtonNewLoading && <Skeleton width={110} height={60} />}
-      <Divider variant="middle" orientation="vertical" />
+      {(showButtonNewLoading && !smDown) && <Skeleton width={110} height={60} />}
+     { (showButtonBack && (showButtonNew || showButtonDelete || showButtonSave || showButtonSaveAndBack)) && (
+       <Divider variant="middle" orientation="vertical" />
+     )}
 
-      {(showButtonBack && !showButtonBackLoading) && (
+      {showButtonBack && !showButtonBackLoading && (
         <Button
           variant="outlined"
           color="primary"
@@ -124,7 +159,14 @@ const DetailTools: React.FC<IDetailToolsProps> = ({
           disableElevation
           startIcon={<Icon>arrow_back</Icon>}
         >
-          Back
+          <Typography
+            variant="button"
+            whiteSpace="nowrap"
+            textOverflow="ellipsis"
+            overflow="hidden"
+          >
+            Back
+          </Typography>
         </Button>
       )}
 

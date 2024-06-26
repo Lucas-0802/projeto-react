@@ -1,4 +1,4 @@
-import { Icon, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { Icon, IconButton, Theme, useMediaQuery, useTheme } from "@mui/material";
 import { Box, Typography } from "@mui/material";
 import { useDrawerContext } from "../contexts/DrawerContext";
 
@@ -14,8 +14,8 @@ const TemplateDefault: React.FC<ITemplateDefault> = ({
   navbar,
 }) => {
   const theme = useTheme();
-  const smDown = useMediaQuery(theme.breakpoints.down("sm"));
-  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
+  const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
   const { toggleDrawerOpen } = useDrawerContext();
 
   return (
