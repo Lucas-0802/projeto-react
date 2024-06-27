@@ -7,6 +7,7 @@ import {
   TextField,
   useTheme,
 } from "@mui/material";
+import { Environment } from "../../environment/indes";
 
 interface IListingToolsProps {
   text?: string;
@@ -41,7 +42,7 @@ const ListingTools: React.FC<IListingToolsProps> = ({
         <TextField
           value={text}
           onChange={(e) => changeText?.(e.target.value)}
-          placeholder="Pesquisar..."
+          placeholder={Environment.INPUT_DE_BUSCA}
           size="small"
           InputProps={{
             endAdornment: (
