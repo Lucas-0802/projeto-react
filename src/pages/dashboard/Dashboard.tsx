@@ -1,7 +1,7 @@
 import DetailTools from "../../shared/components/detailTools/DetailTools";
 import TemplateDefault from "../../shared/layouts/TemplateDefault";
 
-const Dashboard = () => {
+export const Dashboard = () => {
     return ( 
         <TemplateDefault 
         title='Home Page' 
@@ -11,4 +11,3 @@ const Dashboard = () => {
      );
 }
  
-export default Dashboard;
