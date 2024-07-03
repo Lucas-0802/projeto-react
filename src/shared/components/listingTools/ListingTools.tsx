@@ -22,7 +22,7 @@ const ListingTools: React.FC<IListingToolsProps> = ({
   text = "",
   visible = false,
   changeText,
-  textButton = "Novo",
+  textButton = "New",
   visibleButton = true,
   clickButton,
 }) => {

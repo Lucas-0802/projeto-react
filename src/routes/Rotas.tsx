@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useDrawerContext } from "../shared/contexts/DrawerContext";
 import { useEffect } from "react";
-import { Dashboard, ListCitys } from "../pages";
+import { Dashboard, ListPeoples } from "../pages";
 
 const Rotas = () => {
 
@@ -15,9 +15,9 @@ const Rotas = () => {
                 path: '/home'
             },
             {
-                label: 'Citys',
-                icon: 'location_city',
-                path: '/citys'
+                label: 'Peoples',
+                icon: 'people',
+                path: '/people'
             },
         ])
     }, [])
@@ -26,8 +26,8 @@ const Rotas = () => {
         <Routes>
             <Route path="/home" element={<Dashboard />} />
 
-            <Route path="/citys" element={<ListCitys />} />
-            <Route path="/citys/details/:id" element={<ListCitys />} />
+            <Route path="/people" element={<ListPeoples />} />
+            <Route path="/people/details/:id" element={<ListPeoples />} />
 
             <Route path="*" element={<Navigate to="/home" />} />
         </Routes>

@@ -21,8 +21,13 @@ type TcountPeople = {
 };
 
 const getAll = async (page = 1, filter = ""): Promise<TcountPeople | Error> => {
+  console.log(filter);
+  
   try {
-    const urlRelativa = `/peoples?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&fullName_LIKE${filter}`;
+    const filterQuery = encodeURIComponent(filter)
+    const urlRelativa = `/peoples?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&fullName_LIKE=${filterQuery}`;
+    console.log(urlRelativa);
+    
     const { data, headers } = await Api.get(urlRelativa);
 
     if (data) {

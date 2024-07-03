@@ -1,7 +1,10 @@
 {
     "peoples" : [
         {
-            "name" : "Lucas"
+            "id": 1,
+            "fullname": "Lucas Brito",
+            "email": "lucasbrito@gmail.com",
+            "cityId": 1
         }   
     ]
 }
