@@ -1,14 +1,14 @@
 import { Environment } from "../../../../environment/indes.ts";
 import { Api } from "../index.ts";
 
-interface IListPeoples {
+export interface IListPeople {
   id: number;
-  fullName: string;
+  fullname: string;
   email: string;
   cityId: number;
 }
 
-interface IDetailPeoples {
+export interface IDetailPeople {
   id: number;
   fullName: string;
   email: string;
@@ -16,20 +16,20 @@ interface IDetailPeoples {
 }
 
 type TcountPeople = {
-  data: IListPeoples[];
+  data: IListPeople[];
   count: number;
 };
 
 const getAll = async (page = 1, filter = ""): Promise<TcountPeople | Error> => {
-  console.log(filter);
   
   try {
     const filterQuery = encodeURIComponent(filter)
-    const urlRelativa = `/peoples?_page=${page}&_limit=${Environment.LIMITE_DE_LINHAS}&fullName_LIKE=${filterQuery}`;
-    console.log(urlRelativa);
+    const urlRelativa = `/peoples?_page=${page}&fullname_LIKE=${filterQuery}`;
     
-    const { data, headers } = await Api.get(urlRelativa);
-
+    const { data, headers } = await Api.get(urlRelativa);   
+    console.log(headers);
+    
+    
     if (data) {
       return {
         data,
@@ -45,7 +45,7 @@ const getAll = async (page = 1, filter = ""): Promise<TcountPeople | Error> => {
   }
 };
 
-const getById = async (id: number): Promise<IDetailPeoples | Error> => {
+const getById = async (id: number): Promise<IDetailPeople | Error> => {
   try {
     const { data } = await Api.get(`/peoples/${id}`);
 
@@ -62,10 +62,10 @@ const getById = async (id: number): Promise<IDetailPeoples | Error> => {
 };
 
 const create = async (
-  dados: Omit<IDetailPeoples, "id">
+  dados: Omit<IDetailPeople, "id">
 ): Promise<number | Error> => {
   try {
-    const { data } = await Api.post<IDetailPeoples>("/peoples", dados);
+    const { data } = await Api.post<IDetailPeople>("/peoples", dados);
 
     if (data) {
       return data.id;
@@ -81,7 +81,7 @@ const create = async (
 
 const updateById = async (
   id: number,
-  dados: IDetailPeoples
+  dados: IDetailPeople
 ): Promise<void | Error> => {
   try {
     await Api.put(`/peoples${id}`, dados);

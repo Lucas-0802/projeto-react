@@ -15,7 +15,7 @@ const Rotas = () => {
                 path: '/home'
             },
             {
-                label: 'Peoples',
+                label: 'People',
                 icon: 'people',
                 path: '/people'
             },
